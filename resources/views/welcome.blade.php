@@ -78,13 +78,14 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-success">Entrar</button>
+                            <button type="button" class="btn btn-success" onclick="startGame()" >Entrar</button>
                         </div>
                     </div>
                 </div>
             </div>
 
         <!-- script -->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="{{ asset('js/index.js') }}" defer></script>
 
     </body>

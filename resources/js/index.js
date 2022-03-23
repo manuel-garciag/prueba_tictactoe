@@ -24,12 +24,14 @@ window.game = function (type) {
         namePlayer = 'Jugador 1';
 
         modalInputCodGame.classList.add("d-none");
+        localStorage.setItem('typeGame', 'new');
     }else if('two-player'){
         //Unirse a partida
         titleModal = 'Unirse a partida';
         namePlayer = 'Jugador 2';
 
         modalInputCodGame.classList.remove("d-none");
+        localStorage.setItem('typeGame', 'two-player');
     }
 
     //Set de los valores en base al tipo de partida
@@ -40,5 +42,46 @@ window.game = function (type) {
     // Modal
     let myModal = new bootstrap.Modal(document.getElementById('gameModal'), {});
     myModal.show()
+
+}
+
+/**
+ * Funcion para iniciar el juego TIC TAC TOE
+ */
+window.startGame = function () {
+
+    //Elementos
+    let inputNamePlayer = document.getElementById('namePlayer');
+    let inputCodGame = document.getElementById('codGame');
+
+    //Variables
+    let type = localStorage.getItem('typeGame');
+    let namePlayer = inputNamePlayer.value;
+    let codGame = inputCodGame.value;
+
+
+    console.log(type);
+    console.log(namePlayer);
+    console.log(codGame);
+
+    if (namePlayer == '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Por favor digita un nombre de jugador para continuar.',
+          })
+          return;
+    }
+
+    if (type == 'two-player' && codGame == ''){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Por favor digita un código de partida para continuar.',
+          })
+          return;
+    }
+
+    console.log('Partida Encontrada');
 
 }
