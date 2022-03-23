@@ -62,3 +62,10 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## Resource
+
+<a href="https://www.flaticon.com/free-icons/tic-tac-toe" title="tic tac toe icons">Tic tac toe icons created by Peter Lakenbrink - Flaticon</a>
+
+<a href="https://www.flaticon.com/free-icons/players" title="players icons">Players icons created by Freepik - Flaticon</a>
