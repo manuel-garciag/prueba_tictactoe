@@ -1,0 +1,22 @@
+/* Tablero */
+#gameBoard {
+    width: 90%; 
+    margin-left: 5%;
+    height: 50vh;
+}
+
+.part {
+    margin-top: 10px;
+    width: 65%;
+    height: 25%;
+    display: inline-block;
+}
+
+.frame {
+    width: 30%;
+    height: 100%;
+    margin: 1% 1% 1% 1%;
+    border: 1px white solid;
+    display: inline-block;
+    cursor: pointer;
+}
