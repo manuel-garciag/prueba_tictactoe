@@ -1,5 +1,10 @@
 'use strict'
 
+//Limpiamos variables que puedan existir de anteriores partidas
+localStorage.removeItem('typeGame');
+localStorage.removeItem('game');
+localStorage.removeItem('player');
+
 window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js');
 
 /**
@@ -82,6 +87,39 @@ window.startGame = function () {
           return;
     }
 
-    console.log('Partida Encontrada');
+    let data = {
+        name: namePlayer,
+        type: type,
+        code: codGame
+    }
+
+    axios.post('/api/game', data)
+    .then((response)=>{
+        let data = response['data'];
+        if (data.error == '' ) {
+            localStorage.setItem('game',data.game);
+            localStorage.setItem('player',data.player);
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Partida Creada',
+                text: 'La partida se creo correctamente!',
+                timer: 2500,
+                showConfirmButton: false,
+              })
+
+              setTimeout(() => {
+                 location.href = 'game' 
+              }, 2600);
+
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: data.error,
+              })
+              return;
+        }
+    })
 
 }
