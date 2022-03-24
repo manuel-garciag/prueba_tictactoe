@@ -30,7 +30,7 @@ window.game = function (type) {
 
         modalInputCodGame.classList.add("d-none");
         localStorage.setItem('typeGame', 'new');
-    }else if('two-player'){
+    } else if ('two-player') {
         //Unirse a partida
         titleModal = 'Unirse a partida';
         namePlayer = 'Jugador 2';
@@ -74,17 +74,17 @@ window.startGame = function () {
             icon: 'error',
             title: 'Oops...',
             text: 'Por favor digita un nombre de jugador para continuar.',
-          })
-          return;
+        })
+        return;
     }
 
-    if (type == 'two-player' && codGame == ''){
+    if (type == 'two-player' && codGame == '') {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: 'Por favor digita un código de partida para continuar.',
-          })
-          return;
+        })
+        return;
     }
 
     let data = {
@@ -94,32 +94,39 @@ window.startGame = function () {
     }
 
     axios.post('/api/game', data)
-    .then((response)=>{
-        let data = response['data'];
-        if (data.error == '' ) {
-            localStorage.setItem('game',data.game);
-            localStorage.setItem('player',data.player);
+        .then((response) => {
+            let data = response['data'];
+            if (data.error == '') {
+                localStorage.setItem('game', data.game);
+                localStorage.setItem('player', data.player);
 
-            Swal.fire({
-                icon: 'success',
-                title: 'Partida Creada',
-                text: 'La partida se creo correctamente!',
-                timer: 2500,
-                showConfirmButton: false,
-              })
+                let msg = '';
+                if (type == 'new') {
+                    msg = 'La partida se creo correctamente!';
+                } else if (type == 'two-player') {
+                    msg = 'Se encontro la partida';
+                }
 
-              setTimeout(() => {
-                 location.href = 'game' 
-              }, 2600);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Partida Creada',
+                    text: msg,
+                    timer: 2500,
+                    showConfirmButton: false,
+                })
 
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: data.error,
-              })
-              return;
-        }
-    })
+                setTimeout(() => {
+                    location.href = 'game'
+                }, 2600);
+
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: data.error,
+                })
+                return;
+            }
+        })
 
 }

@@ -19,11 +19,11 @@ class GameController extends Controller
 
         if (!empty($name)) {
             $game = Game::registerGame();
-            
+
             if (!empty($game)) {
 
                 $player = Player::registerPlayer($name);
-                
+
                 if (!empty($player)) {
                     $data = [
                         'game' => $game,
@@ -46,10 +46,31 @@ class GameController extends Controller
      */
     public function joinGame(string $name = null, int $idRoom = null)
     {
-        if (!empty($name)) {
-            return 'Nombre: ' . $name . ' y Sala:' . $idRoom;
+
+        $data = ['error' => 'Ocurrio un error al ingresar a la partida, por favor actualice e intente nuevamente.'];
+
+        if (!empty($name) && !empty($idRoom)) {
+            $game = Game::getGame($idRoom);
+
+            if (count($game) >= 1 ) {
+                $player = Player::registerPlayer($name);
+
+                if (!empty($player)) {
+                    $data = [
+                        'game' => $idRoom,
+                        'player' => $player,
+                        'error' => ''
+                    ];
+                }
+            }else{
+                $data = ['error' => 'Codigo de partida incorrecto.'];
+            }
+
+            
         } else {
-            return 'Por favor digite un nombre de usuario.';
+            $data = ['error' => 'Por favor digite un nombre de usuario o el codigo de la partida.'];
         }
+
+        return $data;
     }
 }
