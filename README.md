@@ -13,12 +13,12 @@
 3.  Si tenemos todo correctamente nos dirigimos a la ruta donde deseamos instalar el proyecto, en mi caso lo instalare en c:\xampp\htdocs
     - Una vez en la carpeta ejecutamos el siguiente comando
     ```
-    git clone https://manuel_space@bitbucket.org/manuel_space/test-game.git
+    git clone https://manuel_space@bitbucket.org/manuel_space/prueba_tictactoe.git
     ```
 
     - Ingresamos al proyecto con
     ```
-    cd test-game
+    cd prueba_tictactoe
     ```
 4. Una vez en la carpeta del proyecto ingresamos los siguientes comandos
     ```
